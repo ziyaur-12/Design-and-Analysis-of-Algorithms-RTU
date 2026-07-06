@@ -4,7 +4,7 @@
 
 a. Obtain the Topological ordering of vertices in a given digraph.
 
-b. Compute the transitive closure of a given directed graph using Warshall's Algorithm.
+b. Compute the transitive closure of a given directed graph using Warshall's algorithm.
 
 ---
 
