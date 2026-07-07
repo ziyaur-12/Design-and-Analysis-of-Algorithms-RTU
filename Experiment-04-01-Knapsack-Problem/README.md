@@ -2,7 +2,7 @@
 
 ## Aim
 
-Implement the 0/1 Knapsack Problem using Dynamic Programming.
+Implement 0/1 Knapsack problem using Dynamic Programming.
 
 ---
 
