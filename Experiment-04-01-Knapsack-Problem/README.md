@@ -55,7 +55,7 @@ where
 
 ## Files Included
 
-- **main.cpp** – 0/1 Knapsack implementation
+- **1knapsack.cpp** – 0/1 Knapsack implementation
 - **input.txt** – Sample input
 - **output_1.png** – Output screenshot
 - **README.md** – Documentation
