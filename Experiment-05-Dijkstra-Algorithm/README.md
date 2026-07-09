@@ -2,7 +2,7 @@
 
 ## Aim
 
-From a given vertex in a weighted connected graph, find the shortest paths to all other vertices using Dijkstra's Algorithm.
+From a given vertex in a weighted connected graph, find shortest paths to other vertices using Dijkstra's algorithm. 
 
 ---
 
