@@ -53,7 +53,7 @@ Where:
 
 ## Files Included
 
-- **mstkruskal.cpp** – Kruskal's Algorithm implementation
+- **mst_kruskal.cpp** – Kruskal's Algorithm implementation
 - **input.txt** – Sample input
 - **graph.png** – Weighted graph
 - **output_1.png** – Output screenshot
@@ -131,7 +131,7 @@ g++ main.cpp -o kruskal
 Run
 
 ```bash
-mstkruskal.exe
+mst_kruskal.exe
 ```
 
 ---
