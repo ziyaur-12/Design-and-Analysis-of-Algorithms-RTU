@@ -2,65 +2,102 @@
 using namespace std;
 
 struct Edge {
-    int u, v;
-    int w;
-    bool operator<(const Edge& other) const { return w < other.w; }
+    int u, v, w;
+
+    bool operator<(const Edge &other) const {
+        return w < other.w;
+    }
 };
 
 struct DSU {
-    vector<int> p, r;
-    DSU(int n) : p(n+1), r(n+1,0) { iota(p.begin(), p.end(), 0); }
-    int find(int x){ return p[x]==x? x : p[x]=find(p[x]); }
-    bool unite(int a, int b){
-        a = find(a); b = find(b);
-        if(a==b) return false;
-        if(r[a] < r[b]) swap(a,b);
-        p[b] = a;
-        if(r[a]==r[b]) r[a]++;
+    vector<int> parent, Rank;
+
+    DSU(int n) {
+        parent.resize(n);
+        Rank.assign(n, 0);
+
+        for (int i = 0; i < n; i++)
+            parent[i] = i;
+    }
+
+    int find(int x) {
+        if (parent[x] != x)
+            parent[x] = find(parent[x]);
+        return parent[x];
+    }
+
+    bool unite(int a, int b) {
+        a = find(a);
+        b = find(b);
+
+        if (a == b)
+            return false;
+
+        if (Rank[a] < Rank[b])
+            swap(a, b);
+
+        parent[b] = a;
+
+        if (Rank[a] == Rank[b])
+            Rank[a]++;
+
         return true;
     }
 };
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
 
-    // Number of vertices (edit this if your graph has a different size)
-    int n = 6;
+    int n, e;
 
-    // TODO: Replace with YOUR graph's edges (u, v, weight).
-    // Example placeholder edges:
-    vector<Edge> edges = {
-        // u, v, w
-        {1, 2, 2}, {1, 5, 4}, {1, 4, 1},
-        {2, 3, 3}, {2, 6, 7},
-    
-        
-    };
+    cout << "Enter number of vertices: ";
+    cin >> n;
 
-    sort(edges.begin(), edges.end());     // sort by weight
+    cout << "Enter number of edges: ";
+    cin >> e;
+
+    vector<Edge> edges;
+
+    cout << "\nEnter edges (u v weight)\n";
+
+    for (int i = 0; i < e; i++) {
+        Edge x;
+        cin >> x.u >> x.v >> x.w;
+        edges.push_back(x);
+    }
+
+    sort(edges.begin(), edges.end());
+
     DSU dsu(n);
 
     vector<Edge> mst;
-    long long totalWeight = 0;
+    int totalWeight = 0;
 
-    for(const auto& e : edges){
-        if(dsu.unite(e.u, e.v)){
-            mst.push_back(e);
-            totalWeight += e.w;
-            if((int)mst.size() == n-1) break; // MST complete
+    for (auto edge : edges) {
+
+        if (dsu.unite(edge.u, edge.v)) {
+
+            mst.push_back(edge);
+            totalWeight += edge.w;
+
+            if ((int)mst.size() == n - 1)
+                break;
         }
     }
 
-    if((int)mst.size() != n-1){
-        cout << "Graph is not connected. MST doesn't exist.\n";
+    if ((int)mst.size() != n - 1) {
+        cout << "\nGraph is not connected.\n";
         return 0;
     }
 
-    cout << "MST edges (u - v : w)\n";
-    for(const auto& e : mst){
-        cout << e.u << " - " << e.v << " : " << e.w << "\n";
+    cout << "\nEdges in Minimum Spanning Tree\n\n";
+
+    for (auto edge : mst) {
+        cout << edge.u << " -- "
+             << edge.v << " == "
+             << edge.w << endl;
     }
-    cout << "Total weight = " << totalWeight << "\n";
+
+    cout << "\nMinimum Cost = " << totalWeight << endl;
+
     return 0;
 }
