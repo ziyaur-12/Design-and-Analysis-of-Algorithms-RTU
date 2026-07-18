@@ -1,50 +1,62 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <queue>
+
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+int main()
+{
+    int V, E;
 
-    int n, s;
-    cout << "Enter the no.of vertices: " << flush;
-    cin >> n;
+    cout << "Enter number of vertices: ";
+    cin >> V;
 
-    vector<vector<int>> adj(n + 1, vector<int>(n + 1, 0));
-    cout << "Enter adjacency matrix:\n";
-    for (int v = 1; v <= n; ++v) {
-        for (int w = 1; w <= n; ++w) {
-            cin >> adj[v][w];
-        }
+    cout << "Enter number of edges: ";
+    cin >> E;
+
+    vector<vector<int>> adj(V);
+
+    cout << "\nEnter directed edges (u v)\n";
+
+    for(int i=0;i<E;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
     }
 
-    cout << "Enter the start vertex: " << flush;
-    cin >> s;
+    int start;
 
-    vector<int> visit(n + 1, 0);
+    cout<<"\nEnter starting vertex: ";
+    cin>>start;
+
+    vector<bool> visited(V,false);
+
     queue<int> q;
 
-    cout << "Reachability of vertex " << s << "\n";
-    visit[s] = 1;
-    q.push(s);
+    visited[start]=true;
+    q.push(start);
 
-    bool found = false;
-    while (!q.empty()) {
-        int v = q.front();
+    cout<<"\nNodes reachable using BFS:\n";
+
+    while(!q.empty())
+    {
+        int node=q.front();
         q.pop();
-        for (int w = 1; w <= n; ++w) {
-            if (adj[v][w] == 1 && visit[w] == 0) {
-                visit[w] = 1;
-                found = true;
-                cout << "v" << w << "\t";
-                q.push(w);
+
+        cout<<node<<" ";
+
+        for(int next:adj[node])
+        {
+            if(!visited[next])
+            {
+                visited[next]=true;
+                q.push(next);
             }
         }
     }
 
-    if (!found)
-        cout << "No path found!!\n";
-    else
-        cout << "\n";
+    cout<<endl;
 
     return 0;
 }
