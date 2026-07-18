@@ -1,0 +1,10 @@
+Enter number of vertices: 6
+Enter number of edges: 7
+
+Enter directed edges (u v)
+
+Enter starting vertex: 0
+
+Nodes reachable using BFS:
+
+0 1 2 3 4 5
