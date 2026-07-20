@@ -1,0 +1,6 @@
+Enter number of vertices: 6
+Enter number of edges: 6
+
+Enter edges (u v)
+
+Graph is Connected.
