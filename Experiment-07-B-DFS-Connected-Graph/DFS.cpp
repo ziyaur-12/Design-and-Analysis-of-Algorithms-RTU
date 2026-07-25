@@ -1,40 +1,62 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-int visit[20], n, adj[20][20], countNodes = 0;
+void DFS(int node, vector<vector<int>> &adj, vector<bool> &visited)
+{
+    visited[node] = true;
 
-void dfs(int v) {
-    visit[v] = 1;
-    countNodes++;
-    for (int w = 1; w <= n; w++) {
-        if (adj[v][w] == 1 && visit[w] == 0)
-            dfs(w);
+    for (int next : adj[node])
+    {
+        if (!visited[next])
+            DFS(next, adj, visited);
     }
 }
 
-int main() {
-    int v, w;
-    cout << "Enter the number of vertices: ";
-    cin >> n;
+int main()
+{
+    int V, E;
 
-    cout << "Enter the adjacency matrix:\n";
-    for (v = 1; v <= n; v++) {
-        for (w = 1; w <= n; w++) {
-            cin >> adj[v][w];
+    cout << "Enter number of vertices: ";
+    cin >> V;
+
+    cout << "Enter number of edges: ";
+    cin >> E;
+
+    vector<vector<int>> adj(V);
+
+    cout << "\nEnter edges (u v)\n";
+
+    for (int i = 0; i < E; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+
+        // Undirected Graph
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    vector<bool> visited(V, false);
+
+    DFS(0, adj, visited);
+
+    bool connected = true;
+
+    for (int i = 0; i < V; i++)
+    {
+        if (!visited[i])
+        {
+            connected = false;
+            break;
         }
     }
 
-    // Initialize all vertices as unvisited
-    for (v = 1; v <= n; v++)
-        visit[v] = 0;
-
-    // Perform DFS starting from vertex 1
-    dfs(1);
-
-    if (countNodes == n)
-        cout << "\nThe graph is connected\n";
+    if (connected)
+        cout << "\nGraph is Connected.\n";
     else
-        cout << "\nThe graph is not connected\n";
+        cout << "\nGraph is NOT Connected.\n";
 
     return 0;
 }
