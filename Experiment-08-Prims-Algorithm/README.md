@@ -188,4 +188,4 @@ The Minimum Cost Spanning Tree of the given undirected weighted graph was succes
 
 ## Keywords
 
-Prim's Algorithm, Minimum Spanning Tree, MST, Greedy Algorithm, Weighted Graph, Graph Theory, C++, Design and Analysis of Algorithms, RTU Lab
+Prim's Algorithm, Minimum Spanning Tree, MST, Greedy Algorithm, Weighted Graph, Graph Theory, C++, Design and Analysis of Algorithms, RTU Lab.
