@@ -2,8 +2,7 @@
 
 ## Aim
 
-To find the Minimum Cost Spanning Tree (MST) of a given undirected weighted graph using Prim's Algorithm.
-
+Find Minimum Cost Spanning Tree of a given undirected graph using Prim’s algorithm.
 ---
 
 ## Objective
