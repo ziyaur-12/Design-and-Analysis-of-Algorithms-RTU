@@ -1,0 +1,8 @@
+Enter value of N: 4
+
+Solution
+
+. . Q .
+Q . . .
+. . . Q
+. Q . .
