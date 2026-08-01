@@ -1,0 +1,3 @@
+4
+# Whatever you want more than 3
+like no of queen then you can give 4, 5 , 6....
